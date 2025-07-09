@@ -3,10 +3,10 @@ import { UsersService } from './users.service';
 import { Request, Response } from 'express';
 import { AuthenticationGuard } from 'src/guard';
 import { Role } from 'src/decorator/roles.decorator';
-import { Roles } from 'generated/prisma';
 import { AuthorizationGuard } from 'src/guard/Authorization.guard';
 import { UpdateAddressDto } from './dto/update-address.dto';
 import { CreateAddressDto } from './dto/create-address.dto';
+import { Roles } from '@prisma/client';
 
 @Role(Roles.USER)
 @UseGuards(AuthenticationGuard, AuthorizationGuard)

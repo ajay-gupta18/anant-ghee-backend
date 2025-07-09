@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
-import { AddressType } from "generated/prisma";
+import { AddressType } from "@prisma/client";
 
 export class CreateAddressDto {
   @IsNotEmpty()

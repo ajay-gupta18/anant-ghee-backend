@@ -1,6 +1,6 @@
 import { Type } from "@nestjs/class-transformer";
 import { IsEnum, IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength, MinLength, minLength } from "class-validator";
-import { AddressType } from "generated/prisma";
+import { AddressType } from "@prisma/client";
 
 export class Address {
   @IsNotEmpty()

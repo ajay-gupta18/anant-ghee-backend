@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bycrypt from "bcryptjs"
-import { Roles } from 'generated/prisma';
+import { Roles } from '@prisma/client';
 
 @Injectable()
 export class CommonService {

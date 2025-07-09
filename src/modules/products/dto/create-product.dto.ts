@@ -1,6 +1,6 @@
 import { IsEnum, IsNotEmpty, IsNumber, IsOptional, ValidateNested, IsArray, IsNotIn } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ProductTag } from 'generated/prisma';
+import { ProductTag } from '@prisma/client';
 import { isNotIn, IsPositive } from '@nestjs/class-validator';
 
 export class CreateProductDto {

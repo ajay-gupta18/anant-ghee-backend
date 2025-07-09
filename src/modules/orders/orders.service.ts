@@ -3,7 +3,7 @@ import { Address, CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Request, Response } from 'express';
-import { OrderStatus, PaymentMode, PaymentStatus } from 'generated/prisma';
+import { OrderStatus, PaymentMode, PaymentStatus } from '@prisma/client';
 import { BuyNowDto } from './dto/buy-now.dto';
 import { RazorpayService } from 'src/payment/razorpay/razorpay.service';
 
