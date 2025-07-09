@@ -1,6 +1,5 @@
 # Build Stage
 FROM node:18 AS builder
-
 WORKDIR /app
 
 # Copy and install dependencies
@@ -10,17 +9,18 @@ RUN npm install
 # Copy all files (including schema)
 COPY . .
 
-# 🟡 Generate Prisma Client
+# Generate Prisma Client
 RUN npx prisma generate
 
-# 🟡 Build NestJS
+# Build NestJS
 RUN npm run build
-
 
 # --- Production Stage ---
 FROM node:18-slim
-
 WORKDIR /app
+
+# Install OpenSSL for Prisma
+RUN apt-get update -y && apt-get install -y openssl
 
 # Copy built app and Prisma client
 COPY --from=builder /app/dist ./dist

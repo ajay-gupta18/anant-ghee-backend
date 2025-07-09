@@ -25,11 +25,10 @@ import { RazorpayService } from './payment/razorpay/razorpay.service';
     OrdersModule,
     MailQueueModule,
     BullModule.forRoot({
-      redis: {
-        host: process.env.REDIS_HOST,
-        port: Number(process.env.REDIS_PORT),
-        // password: process.env.REDIS_PASSWORD
-      }
+       redis: {
+        host: process.env.REDIS_HOST || 'redis',
+        port: parseInt(process.env.REDIS_PORT || '6379', 10),
+      },
     })
   ],
   controllers: [AppController],
