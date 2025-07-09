@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: anant_ghee
     ports:
-      - "5433:5432"
+      - "5433:5432"  # External:Internal
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -18,7 +18,7 @@ services:
     container_name: redis
     restart: always
     ports:
-      - "6378:6379"
+      - "6378:6379"  # External:Internal
 
   nest-app:
     build: .
