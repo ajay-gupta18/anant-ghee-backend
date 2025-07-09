@@ -14,6 +14,7 @@ async function bootstrap() {
     const allowedOrigins = [
       process.env.FRONTEND_BASE_URL,
       'http://localhost:5173',
+      'https://majestic-lollipop-29e326.netlify.app/'
     ].filter(Boolean);
 
     if (!origin || allowedOrigins.includes(origin)) {
