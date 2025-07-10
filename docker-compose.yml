@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     image: postgres:15
@@ -8,7 +10,7 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: anant_ghee
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -22,32 +24,35 @@ services:
     container_name: redis
     restart: always
     ports:
-      - "6378:6379"
+      - "6379:6379"
 
-  # Migration service - runs once then stops
   migrate:
-    build: .
+    image: ajaygupta18/anant-ghee-backend:v1.0
     container_name: migrate
     depends_on:
       db:
         condition: service_healthy
-    env_file:
-      - .env
+    environment:
+      DATABASE_URL: postgresql://postgres:root@db:5432/anant_ghee
     command: npx prisma migrate deploy
     restart: "no"
 
   nest-app:
-    build: .
+    image: ajaygupta18/anant-ghee-backend:v1.0
     container_name: nest_server
-    restart: always
     depends_on:
       - db
       - redis
       - migrate
     ports:
-      - "3000:3000"
-    env_file:
-      - .env
+      - "3001:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:root@db:5432/anant_ghee
+      JWT_ACCESS_TOKEN_SECRET: keytocreateaccesstoken
+      JWT_REFRESH_TOKEN_SECRET: keytocreaterefreshtoken
+      FRONTEND_BASE_URL: http://localhost:5173
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     command: npm run start:prod
 
 volumes:
